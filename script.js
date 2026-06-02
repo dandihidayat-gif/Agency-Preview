@@ -86,7 +86,7 @@ if(logoutBtn){
     });
   }
 
-let currentDate = new Date(2026, 0, 1);
+let currentDate = new Date();
 let selectedProjectId = null;
 let selectedPostId = null;
 
