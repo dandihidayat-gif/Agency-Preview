@@ -270,9 +270,15 @@ function renderCalendar(){
       const chip = document.createElement("div");
       chip.className = "post-chip";
 
-      chip.innerHTML = post.status === "posted"
-  ? `${post.content_type || post.contentType} <span class="check-icon">✓</span>`
-  : (post.content_type || post.contentType);
+      const project = projects.find(
+  p => p.id === Number(post.project_id || post.projectId)
+);
+
+const projectName = project ? project.name : "No Project";
+
+chip.innerHTML = post.status === "posted"
+  ? `${projectName} <span class="check-icon">✓</span>`
+  : projectName;
 
       chip.title = `${post.title} - ${post.platforms.join(", ")}`;
       chip.style.color = project.color;
