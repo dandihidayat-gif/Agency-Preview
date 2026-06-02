@@ -260,7 +260,16 @@ function renderCalendar(){
         <button class="add-day-post" data-date="${dateString}">+</button>
       </div>
     `;
+    const today = new Date();
 
+if(
+  day === today.getDate() &&
+  month === today.getMonth() &&
+  year === today.getFullYear()
+){
+  dayBox.classList.add("today");
+}
+    
     const dayPosts = posts.filter(post => post.date === dateString);
 
     dayPosts.forEach(post => {
