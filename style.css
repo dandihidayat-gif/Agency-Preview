@@ -1,0 +1,426 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  
+  body{
+    font-family:Arial,sans-serif;
+    background:#F5F6FA;
+    color:#111827;
+  }
+  
+  .app{
+    display:flex;
+    height:100vh;
+  }
+  
+  .sidebar{
+    width:280px;
+    background:#fff;
+    border-right:1px solid #e5e7eb;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+  }
+  
+  .brand-icon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:#3366FF;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .brand h1{
+    font-size:20px;
+  }
+  
+  .menu-item,
+  .project-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    padding:13px 14px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+  }
+  
+  .menu-item.active,
+  .project-item.active{
+    background:#eef3ff;
+  }
+  
+  .project-logo{
+    width:26px;
+    height:26px;
+    border-radius:8px;
+    object-fit:cover;
+    background:#e5e7eb;
+  }
+  
+  .project-dot{
+    width:26px;
+    height:26px;
+    border-radius:8px;
+  }
+  
+  .project-list{
+    flex:1;
+    overflow:auto;
+  }
+  
+  .new-project-btn,
+  .primary-btn{
+    background:#3366FF;
+    color:#fff;
+    border:none;
+    padding:14px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+  }
+  
+  .settings-btn,
+  .secondary-btn{
+    border:none;
+    background:#f3f4f6;
+    padding:14px 18px;
+    border-radius:12px;
+    cursor:pointer;
+  }
+  
+  .main-content{
+    flex:1;
+    padding:32px;
+    overflow:auto;
+  }
+  
+  .page{
+    display:none;
+  }
+  
+  .page.active{
+    display:block;
+  }
+  
+  .topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+  }
+  
+  .month-nav{
+    display:flex;
+    gap:18px;
+    align-items:center;
+  }
+  
+  .month-nav button{
+    border:none;
+    background:#fff;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    font-size:24px;
+    cursor:pointer;
+  }
+  
+  .calendar{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #edf0f5;
+  }
+  
+  .calendar-days{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    background:#fafafa;
+    border-bottom:1px solid #edf0f5;
+  }
+  
+  .calendar-days div{
+    padding:16px;
+    font-size:12px;
+    color:#6b7280;
+    font-weight:700;
+  }
+  
+  .calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+  }
+  
+  .calendar-day{
+    min-height:130px;
+    border-right:1px solid #edf0f5;
+    border-bottom:1px solid #edf0f5;
+    padding:10px;
+    position:relative;
+  }
+  
+  .date-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  
+  .day-number{
+    font-size:14px;
+    color:#374151;
+  }
+  
+  .add-day-post{
+    width:22px;
+    height:22px;
+    border:none;
+    border-radius:50%;
+    background:#f3f4f6;
+    cursor:pointer;
+  }
+  
+  .post-chip{
+    padding:6px 8px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:700;
+    margin-top:6px;
+    cursor:pointer;
+    user-select:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+  }
+
+  .check-icon{
+    background:#22c55e;
+    color:#fff;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:700;
+  }
+  
+  .empty-day{
+    background:#fbfbfb;
+  }
+  
+  .edit-project-card,
+  .modal-card{
+    max-width:680px;
+    background:#fff;
+    padding:32px;
+    border-radius:18px;
+  }
+  
+  .edit-project-card p,
+  .modal-card p{
+    color:#6b7280;
+    margin:10px 0 24px;
+  }
+  
+  .edit-project-card label,
+  .modal-card label{
+    display:block;
+    margin-top:16px;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:600;
+  }
+  
+  input,
+  select{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:14px;
+  }
+  
+  .edit-actions,
+  .modal-actions{
+    display:flex;
+    gap:12px;
+    margin-top:24px;
+  }
+  
+  .danger-btn{
+    background:#ef4444;
+    color:#fff;
+    border:none;
+    padding:14px 18px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:600;
+  }
+  
+  .modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.35);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:99;
+  }
+  
+  .modal.active{
+    display:flex;
+  }
+  
+  .modal-card{
+    width:520px;
+  }
+  
+  .modal-card.small{
+    width:420px;
+  }
+  
+  .checkbox-group{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  
+  .checkbox-group label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0;
+    font-weight:400;
+  }
+  
+  .checkbox-group input{
+    width:auto;
+  }
+
+  .calendar-days{
+    display:grid !important;
+    grid-template-columns:repeat(7, 1fr) !important;
+  }
+  
+  .calendar-days div{
+    padding:16px;
+    font-size:12px;
+    color:#6b7280;
+    font-weight:700;
+    border-right:1px solid #edf0f5;
+  }
+
+  .post-chip{
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:6px;
+  }
+  
+  .check-icon{
+    background:#22c55e;
+    color:#fff;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    font-weight:700;
+  }
+
+  .login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f5f6fa;
+  }
+  
+  .login-card{
+    width:420px;
+    background:#fff;
+    padding:32px;
+    border-radius:20px;
+  }
+  
+  .login-card h1{
+    margin-bottom:8px;
+  }
+  
+  .login-card p{
+    color:#6b7280;
+    margin-bottom:20px;
+  }
+  
+  .login-card label{
+    display:block;
+    margin-top:16px;
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  
+  .login-error{
+    color:#ef4444;
+    margin-top:14px;
+  }
+  
+  #app{
+    display:none !important;
+  }
+  
+  #app.is-logged-in{
+    display:flex !important;
+  }
+
+  .login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f5f6fa;
+  }
+
+  .menu-item img{
+    width:18px;
+    height:18px;
+  }
+
+  .new-project-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+
+  .settings-btn{
+    color:#2563EB;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
