@@ -377,22 +377,23 @@ document.getElementById("closeProjectModal").addEventListener("click", () => {
 document.getElementById("addProject").addEventListener("click", async () => {
   const addProjectBtn = document.getElementById("addProject");
 
-if(addProjectBtn.disabled) return;
+  if(addProjectBtn.disabled) return;
 
-addProjectBtn.disabled = true;
+  addProjectBtn.disabled = true;
+
   const name = document.getElementById("projectName").value.trim();
   const color = document.getElementById("projectColor").value.trim();
   const logoFile = document.getElementById("projectLogo").files[0];
 
   if(!name || !color){
     alert("Nama project dan warna wajib diisi.");
+    addProjectBtn.disabled = false;
     return;
   }
 
   const createProject = async (logo = "") => {
-
     const user = await getCurrentUser();
-  
+
     const { error } = await supabaseClient
       .from("projects")
       .insert({
@@ -401,35 +402,36 @@ addProjectBtn.disabled = true;
         color,
         logo
       });
-  
+
     if(error){
       console.log(error);
       alert("Gagal menyimpan project");
+      addProjectBtn.disabled = false;
       return;
     }
-  
+
     await loadProjects();
-  
+
     document.getElementById("projectName").value = "";
     document.getElementById("projectColor").value = "";
     document.getElementById("projectLogo").value = "";
-  
+
     projectModal.classList.remove("active");
+    addProjectBtn.disabled = false;
   };
 
   if(logoFile){
     const reader = new FileReader();
 
     reader.onload = async () => {
-        await createProject(reader.result);
-      };
+      await createProject(reader.result);
+    };
 
     reader.readAsDataURL(logoFile);
-  } else {
+  }else{
     await createProject();
   }
 });
-addProjectBtn.disabled = false;
 document.getElementById("openPostModal").addEventListener("click", () => {
   openPostModal();
 });
