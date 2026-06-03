@@ -338,9 +338,6 @@ function openPostDetail(postId){
   p => String(p.id) === String(post.project_id || post.projectId)
 );
 
-document.getElementById("detailProjectName").textContent =
-  project ? project.name : "-";
-
   document.getElementById("detailProjectName").textContent =
   project?.name || "-";
 
