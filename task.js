@@ -39,8 +39,9 @@ if(todoBtn){
     plannerBtn.classList.remove("active");
     todoBtn.classList.add("active");
 
-    document.querySelector(".main-content").style.display = "none";
-    todoView.style.display = "block";
+    document.getElementById("calendarView").style.display = "none";
+document.getElementById("editProjectView").style.display = "none";
+todoView.style.display = "block";
 
     await loadTasks();
     renderTasks();
@@ -53,7 +54,8 @@ if(plannerBtn){
     plannerBtn.classList.add("active");
 
     todoView.style.display = "none";
-    document.querySelector(".main-content").style.display = "block";
+document.getElementById("editProjectView").style.display = "none";
+document.getElementById("calendarView").style.display = "block";
   });
 }
 
