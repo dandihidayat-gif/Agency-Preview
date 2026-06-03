@@ -98,3 +98,32 @@ function renderTasks(){
     taskTableBody.appendChild(tr);
   });
 }
+
+
+const openTaskModal = document.getElementById("openTaskModal");
+const taskModal = document.getElementById("taskModal");
+const taskProject = document.getElementById("taskProject");
+
+if(openTaskModal){
+  openTaskModal.addEventListener("click", () => {
+    taskProject.innerHTML = `<option value="">Pilih Project</option>`;
+
+    projects.forEach(project => {
+      taskProject.innerHTML += `
+        <option value="${project.id}">
+          ${project.name}
+        </option>
+      `;
+    });
+
+    taskModal.classList.add("active");
+  });
+}
+
+const closeTaskModal = document.getElementById("closeTaskModal");
+
+if(closeTaskModal){
+  closeTaskModal.addEventListener("click", () => {
+    taskModal.classList.remove("active");
+  });
+}
