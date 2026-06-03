@@ -429,3 +429,29 @@
   background:#F1F5FF;
   box-shadow:inset 0 0 0 2px #2D68FE;
 }
+
+.detail-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:24px;
+}
+
+.detail-title{
+  font-size:28px;
+  font-weight:400;
+  color:#0f172a;
+}
+
+.platform-icons{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.platform-icons img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+}
