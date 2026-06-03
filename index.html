@@ -209,6 +209,50 @@
   </div>
 </div>
 
+<section id="todoView" class="page">
+  <div class="todo-header">
+    <div>
+      <h2>To Do List</h2>
+      <p>Kelola semua task dari seluruh project dalam satu tempat.</p>
+    </div>
+
+    <button class="primary-btn" id="openTaskModal">
+      + Add Task
+    </button>
+  </div>
+
+  <div class="todo-filter">
+    <select id="filterTaskProject">
+      <option value="">All Project</option>
+    </select>
+
+    <input type="text" id="searchTask" placeholder="Search task...">
+
+    <select id="filterTaskStatus">
+      <option value="">All Status</option>
+      <option value="pending">Pending</option>
+      <option value="in_progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+  </div>
+
+  <div class="todo-card">
+    <table class="todo-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project</th>
+          <th>Task</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="taskTableBody"></tbody>
+    </table>
+  </div>
+</section>
+  
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="script.js"></script>
 </body>
