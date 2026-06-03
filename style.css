@@ -480,3 +480,71 @@
   font-size:16px;
   color:#0F172A;
 }
+
+//code task
+
+#todoView{
+  padding:32px;
+}
+
+.todo-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  margin-bottom:24px;
+}
+
+.todo-header h1{
+  font-size:32px;
+  margin:0 0 6px;
+}
+
+.todo-header p{
+  color:#64748b;
+}
+
+.todo-filter{
+  display:grid;
+  grid-template-columns:180px 1fr 180px;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.todo-filter select,
+.todo-filter input{
+  height:44px;
+  border:1px solid #E2E8F0;
+  border-radius:12px;
+  padding:0 14px;
+  background:#fff;
+}
+
+.todo-table-wrapper{
+  background:#fff;
+  border:1px solid #E2E8F0;
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.todo-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.todo-table th,
+.todo-table td{
+  padding:16px 20px;
+  border-bottom:1px solid #E2E8F0;
+  text-align:left;
+  font-size:14px;
+}
+
+.todo-table th{
+  background:#F8FAFC;
+  color:#64748b;
+  font-weight:700;
+}
+
+.todo-table tr:last-child td{
+  border-bottom:none;
+}
