@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agency Planner</title>
+  <title>Social Media Planner</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -173,7 +173,13 @@
 <div class="modal" id="postDetailModal">
   <div class="modal-card small">
     <h2>Post Detail</h2>
+    <div class="detail-header">
+  <div class="detail-title">
+    Judul : <span id="detailPostTitle">-</span>
+  </div>
 
+  <div id="detailPlatforms" class="platform-icons"></div>
+</div>
     <p><strong>Project:</strong> <span id="detailProjectName"></span></p>
     <p><strong>Tanggal:</strong> <span id="detailPostDate"></span></p>
     <p><strong>Tipe Konten:</strong> <span id="detailPostType"></span></p>
