@@ -252,6 +252,123 @@
     </table>
   </div>
 </section>
+
+  <section id="todoView" style="display:none;">
+  <div class="todo-header">
+
+    <div>
+      <h1>To Do List</h1>
+      <p>Kelola semua task dari seluruh project dalam satu tempat.</p>
+    </div>
+
+    <button id="openTaskModal" class="primary-btn">
+      + Add Task
+    </button>
+
+  </div>
+
+  <div class="todo-filter">
+
+    <select id="taskProjectFilter">
+      <option value="">All Project</option>
+    </select>
+
+    <input
+      type="text"
+      id="taskSearch"
+      placeholder="Search task..."
+    >
+
+    <select id="taskStatusFilter">
+      <option value="">All Status</option>
+      <option value="pending">Pending</option>
+      <option value="in_progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+
+  </div>
+
+  <div class="todo-table-wrapper">
+
+    <table class="todo-table">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project</th>
+          <th>Task</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="taskTableBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+</section>
+
+  <div class="modal" id="taskModal">
+
+  <div class="modal-content">
+
+    <h2>Add Task</h2>
+
+    <select id="taskProject">
+      <option value="">Pilih Project</option>
+    </select>
+
+    <input
+      type="text"
+      id="taskName"
+      placeholder="Nama task"
+    >
+
+    <input
+      type="date"
+      id="taskDeadline"
+    >
+
+    <label>
+      <input type="checkbox" id="noDeadline">
+      No Deadline
+    </label>
+
+    <div id="taskLinks">
+
+      <div class="task-link-row">
+
+        <input
+          type="text"
+          placeholder="Nama Link"
+          class="link-name"
+        >
+
+        <input
+          type="text"
+          placeholder="https://..."
+          class="link-url"
+        >
+
+      </div>
+
+    </div>
+
+    <button id="addLinkRow">
+      + Tambah Link
+    </button>
+
+    <button id="saveTask">
+      Create Task
+    </button>
+
+  </div>
+
+</div>
   
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="script.js"></script>
