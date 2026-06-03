@@ -99,6 +99,65 @@
         </div>
       </div>
     </section>
+ <section id="todoView" style="display:none;">
+  <div class="todo-header">
+
+    <div>
+      <h1>To Do List</h1>
+      <p>Kelola semua task dari seluruh project dalam satu tempat.</p>
+    </div>
+
+    <button id="openTaskModal" class="primary-btn">
+      + Add Task
+    </button>
+
+  </div>
+
+  <div class="todo-filter">
+
+    <select id="taskProjectFilter">
+      <option value="">All Project</option>
+    </select>
+
+    <input
+      type="text"
+      id="taskSearch"
+      placeholder="Search task..."
+    >
+
+    <select id="taskStatusFilter">
+      <option value="">All Status</option>
+      <option value="pending">Pending</option>
+      <option value="in_progress">In Progress</option>
+      <option value="done">Done</option>
+    </select>
+
+  </div>
+
+  <div class="todo-table-wrapper">
+
+    <table class="todo-table">
+
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project</th>
+          <th>Task</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="taskTableBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+</section>
+    
   </main>
 </div>
 
@@ -209,108 +268,63 @@
   </div>
 </div>
 
-<section id="todoView" class="page">
-  <div class="todo-header">
-    <div>
-      <h2>To Do List</h2>
-      <p>Kelola semua task dari seluruh project dalam satu tempat.</p>
-    </div>
+  <div class="modal" id="taskModal">
 
-    <button class="primary-btn" id="openTaskModal">
-      + Add Task
-    </button>
-  </div>
+  <div class="modal-content">
 
-  <div class="todo-filter">
-    <select id="filterTaskProject">
-      <option value="">All Project</option>
-    </select>
+    <h2>Add Task</h2>
 
-    <input type="text" id="searchTask" placeholder="Search task...">
-
-    <select id="filterTaskStatus">
-      <option value="">All Status</option>
-      <option value="pending">Pending</option>
-      <option value="in_progress">In Progress</option>
-      <option value="done">Done</option>
-    </select>
-  </div>
-
-  <div class="todo-card">
-    <table class="todo-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Project</th>
-          <th>Task</th>
-          <th>Deadline</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="taskTableBody"></tbody>
-    </table>
-  </div>
-</section>
-
-  <section id="todoView" style="display:none;">
-  <div class="todo-header">
-
-    <div>
-      <h1>To Do List</h1>
-      <p>Kelola semua task dari seluruh project dalam satu tempat.</p>
-    </div>
-
-    <button id="openTaskModal" class="primary-btn">
-      + Add Task
-    </button>
-
-  </div>
-
-  <div class="todo-filter">
-
-    <select id="taskProjectFilter">
-      <option value="">All Project</option>
+    <select id="taskProject">
+      <option value="">Pilih Project</option>
     </select>
 
     <input
       type="text"
-      id="taskSearch"
-      placeholder="Search task..."
+      id="taskName"
+      placeholder="Nama task"
     >
 
-    <select id="taskStatusFilter">
-      <option value="">All Status</option>
-      <option value="pending">Pending</option>
-      <option value="in_progress">In Progress</option>
-      <option value="done">Done</option>
-    </select>
+    <input
+      type="date"
+      id="taskDeadline"
+    >
+
+    <label>
+      <input type="checkbox" id="noDeadline">
+      No Deadline
+    </label>
+
+    <div id="taskLinks">
+
+      <div class="task-link-row">
+
+        <input
+          type="text"
+          placeholder="Nama Link"
+          class="link-name"
+        >
+
+        <input
+          type="text"
+          placeholder="https://..."
+          class="link-url"
+        >
+
+      </div>
+
+    </div>
+
+    <button id="addLinkRow">
+      + Tambah Link
+    </button>
+
+    <button id="saveTask">
+      Create Task
+    </button>
 
   </div>
 
-  <div class="todo-table-wrapper">
-
-    <table class="todo-table">
-
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Project</th>
-          <th>Task</th>
-          <th>Deadline</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody id="taskTableBody">
-
-      </tbody>
-
-    </table>
-
-  </div>
-</section>
+</div>
 
   <div class="modal" id="taskModal">
 
