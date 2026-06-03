@@ -575,14 +575,23 @@ document.getElementById("savePostStatus").addEventListener("click", async () => 
 const deletePostBtn = document.getElementById("deletePostBtn");
 
 if(deletePostBtn){
-  deletePostBtn.addEventListener("click", () => {
+  deletePostBtn.addEventListener("click", async () => {
     const yakin = confirm("Yakin ingin menghapus post ini?");
 
     if(!yakin) return;
 
-    posts = posts.filter(post => post.id !== selectedPostId);
+    const { error } = await supabaseClient
+      .from("posts")
+      .delete()
+      .eq("id", selectedPostId);
 
-    saveData();
+    if(error){
+      console.log(error);
+      alert("Gagal menghapus post");
+      return;
+    }
+
+    await loadPosts();
     renderCalendar();
 
     postDetailModal.classList.remove("active");
