@@ -339,9 +339,6 @@ function openPostDetail(postId){
   document.getElementById("detailProjectName").textContent =
   project?.name || "-";
 
-document.getElementById("detailProjectLogo").src =
-  project?.logo || "";
-
   document.getElementById("detailProjectName").textContent = project ? project.name : "-";
   document.getElementById("detailPostDate").textContent = post.date;
   document.getElementById("detailPostType").textContent = post.content_type || post.contentType;
