@@ -339,6 +339,31 @@ function openPostDetail(postId){
   document.getElementById("detailProjectName").textContent = project ? project.name : "-";
   document.getElementById("detailPostDate").textContent = post.date;
   document.getElementById("detailPostType").textContent = post.content_type || post.contentType;
+  
+  document.getElementById("detailPostTitle").textContent =
+  post.title || "-";
+
+const platforms = post.platforms || [];
+
+const iconMap = {
+  Instagram: "icons/ig.svg",
+  Facebook: "icons/fb.svg",
+  LinkedIn: "icons/linkedin.svg",
+  Linkedin: "icons/linkedin.svg",
+  TikTok: "icons/tiktok.svg"
+};
+
+document.getElementById("detailPlatforms").innerHTML =
+  platforms.map(platform => {
+    return `
+      <img
+        src="${iconMap[platform]}"
+        alt="${platform}"
+        title="${platform}"
+      >
+    `;
+  }).join("");
+  
   document.getElementById("detailPostLink").value = post.link || "";
   document.getElementById("detailPostStatus").value = post.status || "unposted";
 
