@@ -461,3 +461,28 @@
   height:32px;
   object-fit:contain;
 }
+
+.project-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.project-header img{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+#detailProjectName{
+  font-size:18px;
+  font-weight:700;
+  color:#0F172A;
+}
+
+.detail-title{
+  margin-top:16px;
+  font-size:16px;
+  color:#0F172A;
+}
