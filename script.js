@@ -375,6 +375,11 @@ document.getElementById("closeProjectModal").addEventListener("click", () => {
 });
 
 document.getElementById("addProject").addEventListener("click", async () => {
+  const addProjectBtn = document.getElementById("addProject");
+
+if(addProjectBtn.disabled) return;
+
+addProjectBtn.disabled = true;
   const name = document.getElementById("projectName").value.trim();
   const color = document.getElementById("projectColor").value.trim();
   const logoFile = document.getElementById("projectLogo").files[0];
@@ -424,7 +429,7 @@ document.getElementById("addProject").addEventListener("click", async () => {
     await createProject();
   }
 });
-
+addProjectBtn.disabled = false;
 document.getElementById("openPostModal").addEventListener("click", () => {
   openPostModal();
 });
@@ -517,11 +522,20 @@ document.getElementById("cancelDelete").addEventListener("click", () => {
   deleteConfirmModal.classList.remove("active");
 });
 
-document.getElementById("confirmDelete").addEventListener("click", () => {
-  projects = projects.filter(p => p.id !== selectedProjectId);
-  posts = posts.filter(post => post.projectId !== selectedProjectId);
+document.getElementById("confirmDelete").addEventListener("click", async () => {
+  const { error } = await supabaseClient
+    .from("projects")
+    .delete()
+    .eq("id", selectedProjectId);
 
-  saveData();
+  if(error){
+    console.log(error);
+    alert("Gagal menghapus project");
+    return;
+  }
+
+  await loadProjects();
+  await loadPosts();
 
   deleteConfirmModal.classList.remove("active");
   showCalendar();
@@ -532,14 +546,25 @@ document.getElementById("closeDetailModal").addEventListener("click", () => {
   postDetailModal.classList.remove("active");
 });
 
-document.getElementById("savePostStatus").addEventListener("click", () => {
-  const post = posts.find(p => p.id === selectedPostId);
-  if(!post) return;
+document.getElementById("savePostStatus").addEventListener("click", async () => {
+  const status = document.getElementById("detailPostStatus").value;
+  const link = document.getElementById("detailPostLink").value.trim();
 
-  post.status = document.getElementById("detailPostStatus").value;
-  post.link = document.getElementById("detailPostLink").value.trim();
+  const { error } = await supabaseClient
+    .from("posts")
+    .update({
+      status,
+      link
+    })
+    .eq("id", selectedPostId);
 
-  saveData();
+  if(error){
+    console.log(error);
+    alert("Gagal update status post");
+    return;
+  }
+
+  await loadPosts();
   renderCalendar();
 
   postDetailModal.classList.remove("active");
