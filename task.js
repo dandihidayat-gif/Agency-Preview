@@ -127,3 +127,100 @@ if(closeTaskModal){
     taskModal.classList.remove("active");
   });
 }
+
+const addLinkRowBtn = document.getElementById("addLinkRow");
+const saveTaskBtn = document.getElementById("saveTask");
+const taskLinks = document.getElementById("taskLinks");
+
+if(addLinkRowBtn){
+  addLinkRowBtn.addEventListener("click", () => {
+    const currentRows = taskLinks.querySelectorAll(".task-link-row");
+
+    if(currentRows.length >= 3){
+      alert("Maksimal 3 link.");
+      return;
+    }
+
+    const row = document.createElement("div");
+    row.className = "task-link-row";
+
+    row.innerHTML = `
+      <input type="text" placeholder="Nama Link" class="link-name">
+      <input type="text" placeholder="https://..." class="link-url">
+    `;
+
+    taskLinks.appendChild(row);
+  });
+}
+
+if(saveTaskBtn){
+  saveTaskBtn.addEventListener("click", async () => {
+    const projectId = document.getElementById("taskProject").value;
+    const taskName = document.getElementById("taskName").value.trim();
+    const deadline = document.getElementById("taskDeadline").value;
+    const noDeadline = document.getElementById("noDeadline").checked;
+
+    if(!projectId || !taskName){
+      alert("Project dan nama task wajib diisi.");
+      return;
+    }
+
+    if(!noDeadline && !deadline){
+      alert("Isi deadline atau centang No Deadline.");
+      return;
+    }
+
+    const linkRows = taskLinks.querySelectorAll(".task-link-row");
+
+    const links = Array.from(linkRows)
+      .map(row => {
+        return {
+          name: row.querySelector(".link-name").value.trim(),
+          url: row.querySelector(".link-url").value.trim()
+        };
+      })
+      .filter(link => link.name || link.url);
+
+    const user = await getCurrentUser();
+
+    const maxSort =
+      tasks.length > 0
+        ? Math.max(...tasks.map(task => task.sort_order || 0))
+        : 0;
+
+    const { error } = await supabaseClient
+      .from("tasks")
+      .insert({
+        user_id: user.id,
+        project_id: Number(projectId),
+        task: taskName,
+        deadline: noDeadline ? null : deadline,
+        no_deadline: noDeadline,
+        status: "pending",
+        links,
+        sort_order: maxSort + 1
+      });
+
+    if(error){
+      console.log(error);
+      alert("Gagal membuat task.");
+      return;
+    }
+
+    document.getElementById("taskName").value = "";
+    document.getElementById("taskDeadline").value = "";
+    document.getElementById("noDeadline").checked = false;
+
+    taskLinks.innerHTML = `
+      <div class="task-link-row">
+        <input type="text" placeholder="Nama Link" class="link-name">
+        <input type="text" placeholder="https://..." class="link-url">
+      </div>
+    `;
+
+    taskModal.classList.remove("active");
+
+    await loadTasks();
+    renderTasks();
+  });
+}
