@@ -512,22 +512,37 @@ renderCalendar();
   postModal.classList.remove("active");
 });
 
-document.getElementById("saveProjectChanges").addEventListener("click", () => {
+document.getElementById("saveProjectChanges").addEventListener("click", async () => {
   const project = projects.find(p => p.id === selectedProjectId);
   if(!project) return;
 
   const newColor = document.getElementById("editProjectColor").value.trim();
-  const logoFile = document.getElementById("editProjectLogo").files[0];
+  const logoInput = document.getElementById("editProjectLogo");
+  const logoFile = logoInput.files[0];
 
-  const saveProject = (logo = null) => {
-    project.color = newColor;
+  const updateProject = async (logo = null) => {
+    const updateData = {
+      color: newColor
+    };
 
-    if(logo){
-      project.logo = logo;
+    if(logo !== null){
+      updateData.logo = logo;
     }
 
-    saveData();
-    renderProjects();
+    const { error } = await supabaseClient
+      .from("projects")
+      .update(updateData)
+      .eq("id", selectedProjectId);
+
+    if(error){
+      console.log(error);
+      alert("Gagal update project");
+      return;
+    }
+
+    logoInput.value = "";
+
+    await loadProjects();
     renderCalendar();
 
     alert("Project berhasil disimpan.");
@@ -536,13 +551,13 @@ document.getElementById("saveProjectChanges").addEventListener("click", () => {
   if(logoFile){
     const reader = new FileReader();
 
-    reader.onload = () => {
-      saveProject(reader.result);
+    reader.onload = async () => {
+      await updateProject(reader.result);
     };
 
     reader.readAsDataURL(logoFile);
-  } else {
-    saveProject();
+  }else{
+    await updateProject();
   }
 });
 
