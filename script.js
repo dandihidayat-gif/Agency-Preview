@@ -334,7 +334,12 @@ function openPostDetail(postId){
   const post = posts.find(p => p.id === postId);
   if(!post) return;
 
-  const project = projects.find(p => p.id === Number(post.projectId));
+  const project = projects.find(
+  p => String(p.id) === String(post.project_id || post.projectId)
+);
+
+document.getElementById("detailProjectName").textContent =
+  project ? project.name : "-";
 
   document.getElementById("detailProjectName").textContent =
   project?.name || "-";
