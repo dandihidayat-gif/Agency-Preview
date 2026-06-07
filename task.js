@@ -86,34 +86,38 @@ function renderTasks(){
 
     const tr = document.createElement("tr");
 
-    <td class="task-actions">
+tr.innerHTML = `
+  <td>${index + 1}</td>
+  <td>${project ? project.name : "-"}</td>
+  <td>${task.task}</td>
+  <td>${task.no_deadline ? "No Deadline" : task.deadline || "-"}</td>
+  <td>${task.status}</td>
 
-  <button
-    class="action-btn move-up"
-    data-id="${task.id}"
-  >
-    <img src="icons/up.svg" alt="">
-  </button>
+  <td class="task-actions">
 
-  <button
-    class="action-btn move-down"
-    data-id="${task.id}"
-  >
-    <img src="icons/down.svg" alt="">
-  </button>
+    <button
+      class="action-btn move-up"
+      data-id="${task.id}"
+    >
+      <img src="icons/up.svg" alt="">
+    </button>
 
-  <button
-    class="action-btn task-menu-btn"
-    data-id="${task.id}"
-  >
-    <img src="icons/threedot.svg" alt="">
-  </button>
+    <button
+      class="action-btn move-down"
+      data-id="${task.id}"
+    >
+      <img src="icons/down.svg" alt="">
+    </button>
 
-</td>
+    <button
+      class="action-btn task-menu-btn"
+      data-id="${task.id}"
+    >
+      <img src="icons/threedot.svg" alt="">
+    </button>
 
-    taskTableBody.appendChild(tr);
-  });
-}
+  </td>
+`;
 
 
 const openTaskModal = document.getElementById("openTaskModal");
