@@ -171,9 +171,16 @@ function showProjectSettings(projectId){
   const project = projects.find(p => p.id === projectId);
   if(!project) return;
 
-  calendarView.classList.remove("active");
-  editProjectView.classList.add("active");
+  document.getElementById("calendarView").style.display = "none";
+  document.getElementById("todoView").style.display = "none";
+  document.getElementById("editProjectView").style.display = "block";
+
   homeBtn.classList.remove("active");
+
+  const todoBtn = document.getElementById("todoBtn");
+  if(todoBtn){
+    todoBtn.classList.remove("active");
+  }
 
   document.getElementById("editProjectName").value = project.name;
   document.getElementById("editProjectColor").value = project.color;
