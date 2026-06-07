@@ -40,11 +40,11 @@ if(todoBtn){
     todoBtn.classList.add("active");
 
     document.getElementById("calendarView").style.display = "none";
-document.getElementById("editProjectView").style.display = "none";
-todoView.style.display = "block";
+    document.getElementById("editProjectView").style.display = "none";
+    todoView.style.display = "block";
 
     await loadTasks();
-    );
+    renderTasks();
   });
 }
 
