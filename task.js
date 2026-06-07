@@ -86,8 +86,7 @@ function renderTasks(){
 
     const tr = document.createElement("tr");
 
-    tr.innerHTML = `
-      <td class="task-actions">
+    <td class="task-actions">
 
   <button
     class="action-btn move-up"
@@ -111,7 +110,6 @@ function renderTasks(){
   </button>
 
 </td>
-    `;
 
     taskTableBody.appendChild(tr);
   });
