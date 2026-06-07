@@ -653,3 +653,29 @@
   width:18px;
   height:18px;
 }
+
+.task-menu{
+  position:fixed;
+  display:none;
+  background:#fff;
+  border:1px solid #E2E8F0;
+  border-radius:12px;
+  min-width:180px;
+  z-index:9999;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.task-menu button{
+  width:100%;
+  border:none;
+  background:none;
+  text-align:left;
+  padding:12px 16px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.task-menu button:hover{
+  background:#F8FAFC;
+}
