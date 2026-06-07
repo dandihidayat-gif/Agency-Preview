@@ -44,7 +44,7 @@ document.getElementById("editProjectView").style.display = "none";
 todoView.style.display = "block";
 
     await loadTasks();
-    renderTasks();
+    );
   });
 }
 
@@ -87,12 +87,30 @@ function renderTasks(){
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${project ? project.name : "-"}</td>
-      <td>${task.task}</td>
-      <td>${task.no_deadline ? "No Deadline" : task.deadline || "-"}</td>
-      <td>${task.status}</td>
-      <td>-</td>
+      <td class="task-actions">
+
+  <button
+    class="action-btn move-up"
+    data-id="${task.id}"
+  >
+    <img src="icons/up.svg" alt="">
+  </button>
+
+  <button
+    class="action-btn move-down"
+    data-id="${task.id}"
+  >
+    <img src="icons/down.svg" alt="">
+  </button>
+
+  <button
+    class="action-btn task-menu-btn"
+    data-id="${task.id}"
+  >
+    <img src="icons/threedot.svg" alt="">
+  </button>
+
+</td>
     `;
 
     taskTableBody.appendChild(tr);
