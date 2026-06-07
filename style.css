@@ -626,3 +626,30 @@
   gap:12px;
   margin-top:16px;
 }
+
+.task-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.action-btn{
+  width:32px;
+  height:32px;
+  border:none;
+  background:#F8FAFC;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.action-btn:hover{
+  background:#E2E8F0;
+}
+
+.action-btn img{
+  width:18px;
+  height:18px;
+}
