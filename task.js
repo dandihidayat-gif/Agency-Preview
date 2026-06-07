@@ -236,5 +236,53 @@ if(saveTaskBtn){
 
     await loadTasks();
     renderTasks();
+
+    const taskActionMenu = document.getElementById("taskActionMenu");
+
+document.addEventListener("click", e => {
+  const menuBtn = e.target.closest(".task-menu-btn");
+
+  if(!menuBtn){
+    if(taskActionMenu) taskActionMenu.style.display = "none";
+    return;
+  }
+
+  const taskId = menuBtn.dataset.id;
+
+  const task = tasks.find(
+    t => String(t.id) === String(taskId)
+  );
+
+  if(!task) return;
+
+  let menuItems = "";
+
+  if(task.status === "pending"){
+    menuItems = `
+      <button data-action="detail" data-id="${task.id}">Detail</button>
+      <button data-action="start" data-id="${task.id}">Start Progress</button>
+      <button data-action="delete" data-id="${task.id}">Delete</button>
+    `;
+  }
+
+  if(task.status === "in_progress"){
+    menuItems = `
+      <button data-action="detail" data-id="${task.id}">Detail</button>
+      <button data-action="finish" data-id="${task.id}">Finish Task</button>
+      <button data-action="delete" data-id="${task.id}">Delete</button>
+    `;
+  }
+
+  if(task.status === "done"){
+    menuItems = `
+      <button data-action="detail" data-id="${task.id}">Detail</button>
+    `;
+  }
+
+  taskActionMenu.innerHTML = menuItems;
+  taskActionMenu.style.display = "block";
+  taskActionMenu.style.left = `${e.clientX}px`;
+  taskActionMenu.style.top = `${e.clientY}px`;
+});
   });
 }
