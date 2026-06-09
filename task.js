@@ -237,31 +237,27 @@ if(saveTaskBtn){
     await loadTasks();
     renderTasks();
 
-    const taskActionMenu = document.getElementById("taskActionMenu");
+    const taskActionMenu =
+  document.getElementById("taskActionMenu");
 
-function bindTaskMenuButtons(){
-  const taskActionMenu = document.getElementById("taskActionMenu");
+document.addEventListener("click", (e) => {
 
-  document.querySelectorAll(".task-menu-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
+  const menuBtn = e.target.closest(".task-menu-btn");
 
-      const taskId = btn.dataset.id;
-      const task = tasks.find(
-        t => String(t.id) === String(taskId)
-      );
+  if(menuBtn){
 
-      if(!task) return;
+    taskActionMenu.innerHTML = `
+      <button>Detail</button>
+      <button>Start Progress</button>
+      <button>Delete</button>
+    `;
 
-      taskActionMenu.innerHTML = `
-        <button>Detail</button>
-        <button>Start Progress</button>
-        <button>Delete</button>
-      `;
+    taskActionMenu.style.display = "block";
+    taskActionMenu.style.left = `${e.pageX}px`;
+    taskActionMenu.style.top = `${e.pageY}px`;
 
-      taskActionMenu.style.display = "block";
-      taskActionMenu.style.left = `${e.clientX}px`;
-      taskActionMenu.style.top = `${e.clientY}px`;
-    });
-  });
-}
+    return;
+  }
+
+  taskActionMenu.style.display = "none";
+});
