@@ -247,7 +247,9 @@ function bindTaskMenuButtons(){
       e.stopPropagation();
 
       const taskId = btn.dataset.id;
-      const task = tasks.find(t => String(t.id) === String(taskId));
+      const task = tasks.find(
+        t => String(t.id) === String(taskId)
+      );
 
       if(!task) return;
 
@@ -261,6 +263,5 @@ function bindTaskMenuButtons(){
       taskActionMenu.style.left = `${e.clientX}px`;
       taskActionMenu.style.top = `${e.clientY}px`;
     });
-    bindTaskMenuButtons();
   });
 }
