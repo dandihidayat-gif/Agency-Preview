@@ -284,3 +284,6 @@ document.addEventListener("click", e => {
   taskActionMenu.style.left = `${e.clientX}px`;
   taskActionMenu.style.top = `${e.clientY}px`;
 });
+
+}
+
