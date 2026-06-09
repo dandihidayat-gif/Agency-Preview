@@ -239,50 +239,28 @@ if(saveTaskBtn){
 
     const taskActionMenu = document.getElementById("taskActionMenu");
 
-document.addEventListener("click", e => {
-  const menuBtn = e.target.closest(".task-menu-btn");
+function bindTaskMenuButtons(){
+  const taskActionMenu = document.getElementById("taskActionMenu");
 
-  if(!menuBtn){
-    if(taskActionMenu) taskActionMenu.style.display = "none";
-    return;
-  }
+  document.querySelectorAll(".task-menu-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
 
-  const taskId = menuBtn.dataset.id;
+      const taskId = btn.dataset.id;
+      const task = tasks.find(t => String(t.id) === String(taskId));
 
-  const task = tasks.find(
-    t => String(t.id) === String(taskId)
-  );
+      if(!task) return;
 
-  if(!task) return;
+      taskActionMenu.innerHTML = `
+        <button>Detail</button>
+        <button>Start Progress</button>
+        <button>Delete</button>
+      `;
 
-  let menuItems = "";
-
-  if(task.status === "pending"){
-    menuItems = `
-      <button data-action="detail" data-id="${task.id}">Detail</button>
-      <button data-action="start" data-id="${task.id}">Start Progress</button>
-      <button data-action="delete" data-id="${task.id}">Delete</button>
-    `;
-  }
-
-  if(task.status === "in_progress"){
-    menuItems = `
-      <button data-action="detail" data-id="${task.id}">Detail</button>
-      <button data-action="finish" data-id="${task.id}">Finish Task</button>
-      <button data-action="delete" data-id="${task.id}">Delete</button>
-    `;
-  }
-
-  if(task.status === "done"){
-    menuItems = `
-      <button data-action="detail" data-id="${task.id}">Detail</button>
-    `;
-  }
-
-  taskActionMenu.innerHTML = menuItems;
-  taskActionMenu.style.display = "block";
-  taskActionMenu.style.left = `${e.clientX}px`;
-  taskActionMenu.style.top = `${e.clientY}px`;
-});
+      taskActionMenu.style.display = "block";
+      taskActionMenu.style.left = `${e.clientX}px`;
+      taskActionMenu.style.top = `${e.clientY}px`;
+    });
+    bindTaskMenuButtons();
   });
 }
