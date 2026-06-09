@@ -239,13 +239,17 @@ if(saveTaskBtn){
 
    const taskActionMenu = document.getElementById("taskActionMenu");
 
-document.addEventListener("click", e => {
+document.addEventListener("click", (e) => {
   const menuBtn = e.target.closest(".task-menu-btn");
 
-  if(!menuBtn){
-    if(taskActionMenu) taskActionMenu.style.display = "none";
+  if (!menuBtn) {
+    if (taskActionMenu) {
+      taskActionMenu.style.display = "none";
+    }
     return;
   }
+
+  if (!taskActionMenu) return;
 
   const taskId = menuBtn.dataset.id;
 
@@ -253,11 +257,11 @@ document.addEventListener("click", e => {
     t => String(t.id) === String(taskId)
   );
 
-  if(!task) return;
+  if (!task) return;
 
   let menuItems = "";
 
-  if(task.status === "pending"){
+  if (task.status === "pending") {
     menuItems = `
       <button data-action="detail" data-id="${task.id}">Detail</button>
       <button data-action="start" data-id="${task.id}">Start Progress</button>
@@ -265,7 +269,7 @@ document.addEventListener("click", e => {
     `;
   }
 
-  if(task.status === "in_progress"){
+  if (task.status === "in_progress") {
     menuItems = `
       <button data-action="detail" data-id="${task.id}">Detail</button>
       <button data-action="finish" data-id="${task.id}">Finish Task</button>
@@ -273,7 +277,7 @@ document.addEventListener("click", e => {
     `;
   }
 
-  if(task.status === "done"){
+  if (task.status === "done") {
     menuItems = `
       <button data-action="detail" data-id="${task.id}">Detail</button>
     `;
@@ -284,6 +288,3 @@ document.addEventListener("click", e => {
   taskActionMenu.style.left = `${e.clientX}px`;
   taskActionMenu.style.top = `${e.clientY}px`;
 });
-  });
-}
-
